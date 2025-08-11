@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
+import 'package:potty_habit_tracker/colors.dart';
 import 'package:potty_habit_tracker/screens/dashboard_tab.dart';
 import 'package:potty_habit_tracker/screens/event_log_tab.dart';
 import 'package:potty_habit_tracker/services/event_export_service.dart';
@@ -89,35 +89,33 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Event log'),
         ],
       ),
-      floatingActionButtonLocation: ExpandableFab.location,
       floatingActionButton: _selectedIndex == 0
-          ? ExpandableFab(
-              type: ExpandableFabType.up,
-              distance: 60,
-              openButtonBuilder: RotateFloatingActionButtonBuilder(
-                child: const Icon(Icons.add),
-                fabSize: ExpandableFabSize.regular,
-                shape: const CircleBorder(),
+          ? Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: Row(
+                mainAxisSize: MainAxisSize.min, // shrink to fit children
+                mainAxisAlignment:
+                    MainAxisAlignment.center, // center horizontally
+                children: [
+                  SizedBox(
+                    child: FloatingActionButton.extended(
+                      heroTag: 'addPee',
+                      icon: const Icon(Icons.opacity, color: PeeColor),
+                      label: const Text('Add Pee'),
+                      onPressed: () => pottyEventService.addPee(),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  SizedBox(
+                    child: FloatingActionButton.extended(
+                      heroTag: 'addPoop',
+                      icon: const Icon(Icons.grass, color: PoopColor),
+                      label: const Text('Add Poop'),
+                      onPressed: () => pottyEventService.addPoop(),
+                    ),
+                  ),
+                ],
               ),
-              closeButtonBuilder: DefaultFloatingActionButtonBuilder(
-                child: const Icon(Icons.close),
-                fabSize: ExpandableFabSize.small,
-                shape: const CircleBorder(),
-              ),
-              children: [
-                FloatingActionButton.small(
-                  heroTag: 'addPee',
-                  onPressed: () => pottyEventService.addPee(),
-                  shape: const CircleBorder(),
-                  child: const Icon(Icons.opacity),
-                ),
-                FloatingActionButton.small(
-                  heroTag: 'addPoop',
-                  shape: const CircleBorder(),
-                  onPressed: () => pottyEventService.addPoop(),
-                  child: const Icon(Icons.grass),
-                ),
-              ],
             )
           : null,
     );

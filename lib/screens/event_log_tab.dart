@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:potty_habit_tracker/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -26,9 +27,14 @@ class EventLogTab extends StatelessWidget {
       itemCount: provider.events.length,
       itemBuilder: (context, i) {
         final e = provider.events[i];
+        final isPee = e.type == PottyType.pee;
+
         return ListTile(
-          leading: Icon(e.type == PottyType.pee ? Icons.opacity : Icons.grass),
-          title: Text(e.type == PottyType.pee ? 'Pee' : 'Poop'),
+          leading: Icon(
+            isPee ? Icons.opacity : Icons.grass,
+            color: isPee ? PeeColor : PoopColor,
+          ),
+          title: Text(isPee ? 'Pee' : 'Poop'),
           subtitle: Text(DateFormat('dd.MM.yyyy HH:mm').format(e.timestamp)),
           trailing: e.id != null
               ? IconButton(

@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:potty_habit_tracker/colors.dart';
 
 class PottyHistogram extends StatelessWidget {
   final List<int> peeCountByHour;
@@ -26,12 +27,12 @@ class PottyHistogram extends StatelessWidget {
         barRods: [
           BarChartRodData(
             toY: peeCountByHour[i].toDouble(),
-            color: Colors.blue,
+            color: PeeColor,
             width: 6,
           ),
           BarChartRodData(
             toY: poopCountByHour[i].toDouble(),
-            color: Colors.brown,
+            color: PoopColor,
             width: 6,
           ),
         ],
@@ -79,9 +80,9 @@ class PottyHistogram extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildLegendItem(color: Colors.blue, label: 'Pee'),
+            _buildLegendItem(color: PeeColor, label: 'Pee'),
             const SizedBox(width: 24),
-            _buildLegendItem(color: Colors.brown, label: 'Poop'),
+            _buildLegendItem(color: PoopColor, label: 'Poop'),
           ],
         ),
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:potty_habit_tracker/colors.dart';
 import 'package:potty_habit_tracker/widgets/potty_histogram.dart';
 import 'package:potty_habit_tracker/widgets/statistics_card.dart';
 import 'package:provider/provider.dart';
@@ -73,7 +74,7 @@ class DashboardTab extends StatelessWidget {
                       title: 'Pees Today',
                       value: '${peeEvents.length}',
                       icon: Icons.opacity,
-                      color: Colors.blue,
+                      color: PeeColor,
                     ),
                   ),
                   Expanded(
@@ -81,7 +82,7 @@ class DashboardTab extends StatelessWidget {
                       title: 'Poops Today',
                       value: '${poopEvents.length}',
                       icon: Icons.grass,
-                      color: Colors.brown,
+                      color: PoopColor,
                     ),
                   ),
                 ],
@@ -97,7 +98,7 @@ class DashboardTab extends StatelessWidget {
                           ? DateFormat.Hm().format(lastPee)
                           : '-',
                       icon: Icons.access_time,
-                      color: Colors.blue,
+                      color: PeeColor,
                     ),
                   ),
                   Expanded(
@@ -107,7 +108,7 @@ class DashboardTab extends StatelessWidget {
                           ? DateFormat.Hm().format(lastPoop)
                           : '-',
                       icon: Icons.access_time,
-                      color: Colors.brown,
+                      color: PoopColor,
                     ),
                   ),
                 ],
